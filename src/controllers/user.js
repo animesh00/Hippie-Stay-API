@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
 import { sendVerificationEmail } from '../../utils/verifyemail.js';
 import { User } from '../model/model.js';
 
@@ -35,12 +34,10 @@ export const registerUser = async (req, res) => {
 
         await newUser.save();
 
-        console.log(":::::::::::::WE ARE HERE::::::::::::");
 
-        const verificationLink = `https://yourdomain.com/verify-email?token=${verificationToken}`;
+        const verificationLink = `http://localhost:3000/verify-email?token=${verificationToken}`;
         await sendVerificationEmail(email, name, verificationLink);
 
-        console.log(":::::::::::::WE ARE HERE:::::::::::: 22222");
 
 
         res.status(201).json({ message: 'User registered successfully. Please check your email to verify your account.', user: newUser });

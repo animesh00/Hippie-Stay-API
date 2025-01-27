@@ -49,7 +49,7 @@ export const getBookingById = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const booking = await Booking.findOne({ _id: id, userId: req.user.id }).populate('roomId hotelId');
+        const booking = await Booking.findOne({ _id: id, userId: req.user.id }).populate('roomId hotelId').populate('userId');
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }

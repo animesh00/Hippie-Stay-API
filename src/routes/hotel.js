@@ -6,7 +6,7 @@ import { adminGuard, authGuard } from "../middlewares/authGaurd.js";
 
 const hotelRouter = Router();
 
-hotelRouter.get("/", getAllHotels);
+hotelRouter.get("/", getAllHotels); 
 hotelRouter.get("/:id", getHotelById);
 
 hotelRouter.post("/", authGuard, adminGuard, upload.single("file"), createHotel);
